@@ -1,0 +1,3 @@
+mode,draft_model,verifier_model,prompt_count,temperature,num_speculative_tokens,latency_ms,generated_tokens,tokens_per_second,speedup_vs_vllm_baseline
+vllm_baseline,,meta-llama/Llama-3.1-8B,9,0.0,,395.6599999983154,521,1316.7871404797506,
+vllm_speculative,meta-llama/Llama-3.2-1B,meta-llama/Llama-3.1-8B,9,0.0,4.0,3173.593133000395,521,164.16723195623803,0.1246725662102276

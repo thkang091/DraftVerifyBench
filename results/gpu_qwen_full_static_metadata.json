@@ -1,0 +1,44 @@
+{
+  "device_type": "cuda",
+  "gpu_name": "NVIDIA GH200 480GB",
+  "cuda_version": "13.0",
+  "cuda_device_count": 1,
+  "cuda_driver": "580.105.08",
+  "platform": "Linux-6.8.0-1046-nvidia-64k-aarch64-with-glibc2.39",
+  "torch_version": "2.12.1+cu130",
+  "transformers_version": "5.12.1",
+  "python_version": "3.12.3 (main, Jan 22 2026, 20:57:42) [GCC 13.3.0]",
+  "draft_model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "verifier_model": "Qwen/Qwen2.5-7B-Instruct",
+  "draft_parameter_count": 494032768,
+  "verifier_parameter_count": 7615616512,
+  "draft_dtype": "torch.bfloat16",
+  "verifier_dtype": "torch.bfloat16",
+  "max_new_tokens": 128,
+  "seed": 42,
+  "repetition_count": 2,
+  "batch_size": 1,
+  "prompt_count": 15,
+  "warmup_count": 1,
+  "temperatures": [
+    0.0,
+    0.3,
+    0.7
+  ],
+  "draft_ks": [
+    1,
+    2,
+    4,
+    8
+  ],
+  "schedules": [
+    "static"
+  ],
+  "adaptive_policies": [],
+  "torch_compile": false,
+  "validation_level": "gpu_qwen_full_static",
+  "timing_scope": "cuda_validation",
+  "gpu_memory_allocated_bytes": 16306199552,
+  "gpu_memory_reserved_bytes": 17106468864,
+  "gpu_max_memory_allocated_bytes": 16372700672
+}

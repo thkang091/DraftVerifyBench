@@ -1,0 +1,15 @@
+seed: 42
+device: auto
+draft_model: distilgpt2
+verifier_model: gpt2
+max_new_tokens: 96
+temperatures: [0.0, 0.3, 0.7, 1.0]
+draft_ks: [1, 2, 4, 8]
+prompt_types:
+  - code_completion
+  - structured_json
+  - factual_qa
+  - summarization
+  - open_ended
+repetitions: 5
+

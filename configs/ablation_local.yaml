@@ -1,0 +1,50 @@
+seed: 42
+device: auto
+dtype: auto
+draft_model: distilgpt2
+verifier_model: gpt2
+max_new_tokens: 8
+temperatures: [0.0, 0.7]
+draft_ks: [1, 2, 4, 8]
+prompt_types:
+  - code_completion
+  - structured_json
+  - factual_qa
+  - summarization
+  - open_ended
+repetitions: 1
+batch_size: 1
+warmup_runs: 0
+schedules: [static, adaptive]
+adaptive_policies:
+  - confidence_threshold
+  - entropy_threshold
+  - rolling_acceptance
+adaptive_variants:
+  - name: confidence_conservative
+    policy: confidence_threshold
+    confidence_thresholds: {"0.95": 8, "0.85": 4, "0.70": 2}
+  - name: confidence_default
+    policy: confidence_threshold
+    confidence_thresholds: {"0.85": 8, "0.70": 4, "0.50": 2}
+  - name: confidence_aggressive
+    policy: confidence_threshold
+    confidence_thresholds: {"0.70": 8, "0.50": 4, "0.30": 2}
+  - name: entropy_conservative
+    policy: entropy_threshold
+    entropy_thresholds: {"1.5": 8, "3.0": 4, "4.5": 2}
+  - name: entropy_default
+    policy: entropy_threshold
+    entropy_thresholds: {"2.0": 8, "4.0": 4, "6.0": 2}
+  - name: entropy_aggressive
+    policy: entropy_threshold
+    entropy_thresholds: {"3.0": 8, "6.0": 4, "8.0": 2}
+  - name: rolling_w2
+    policy: rolling_acceptance
+    rolling_acceptance_window: 2
+  - name: rolling_w4
+    policy: rolling_acceptance
+    rolling_acceptance_window: 4
+  - name: rolling_w8
+    policy: rolling_acceptance
+    rolling_acceptance_window: 8

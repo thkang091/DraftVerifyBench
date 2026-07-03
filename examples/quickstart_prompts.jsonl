@@ -1,0 +1,4 @@
+{"prompt_id":"quick_qa_001","prompt_type":"factual_qa","prompt_text":"Explain what a cache is in one paragraph.","expected_entropy_level":"medium"}
+{"prompt_id":"quick_json_001","prompt_type":"structured_json","prompt_text":"Return JSON with name, total, and date for: Sam paid 12.50 on 2025-01-02.","expected_entropy_level":"low"}
+{"prompt_id":"quick_code_001","prompt_type":"code_completion","prompt_text":"Complete this Python function: def is_even(n):","expected_entropy_level":"low"}
+

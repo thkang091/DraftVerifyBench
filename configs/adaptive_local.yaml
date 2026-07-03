@@ -1,0 +1,34 @@
+seed: 42
+device: auto
+dtype: auto
+draft_model: distilgpt2
+verifier_model: gpt2
+max_new_tokens: 32
+temperatures: [0.0, 0.3, 0.7]
+draft_ks: [1, 2, 4, 8]
+prompt_types:
+  - code_completion
+  - structured_json
+  - factual_qa
+  - summarization
+  - open_ended
+repetitions: 2
+batch_size: 1
+warmup_runs: 0
+schedules: [static, adaptive]
+adaptive_policies:
+  - confidence_threshold
+  - entropy_threshold
+  - rolling_acceptance
+confidence_thresholds:
+  "0.85": 8
+  "0.70": 4
+  "0.50": 2
+entropy_thresholds:
+  "2.0": 8
+  "4.0": 4
+  "6.0": 2
+rolling_acceptance_window: 8
+rolling_acceptance_min_k: 1
+rolling_acceptance_max_k: 8
+

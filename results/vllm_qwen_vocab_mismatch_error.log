@@ -1,0 +1,12 @@
+vLLM Qwen speculative decoding failed because target and draft vocab sizes differ.
+
+Target model: Qwen/Qwen2.5-7B-Instruct
+Draft model: Qwen/Qwen2.5-0.5B-Instruct
+
+Error:
+Target and draft model should have the same vocabulary size.
+Target model vocab_size=152064.
+Draft model vocab_size=151936.
+
+Interpretation:
+vLLM draft-model speculative decoding rejects this Qwen pair due to tokenizer/vocabulary mismatch.

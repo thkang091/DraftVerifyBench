@@ -1,0 +1,24 @@
+seed: 42
+device: cuda
+dtype: auto
+validation_level: gpu_qwen_full_static
+
+draft_model: Qwen/Qwen2.5-0.5B-Instruct
+verifier_model: Qwen/Qwen2.5-7B-Instruct
+
+max_new_tokens: 128
+temperatures: [0.0, 0.3, 0.7]
+draft_ks: [1, 2, 4, 8]
+prompt_types:
+  - code_completion
+  - structured_json
+  - factual_qa
+  - summarization
+  - open_ended
+repetitions: 2
+batch_size: 1
+warmup_runs: 1
+torch_compile: false
+local_files_only: false
+schedules: [static]
+adaptive_policies: []

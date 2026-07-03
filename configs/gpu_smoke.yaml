@@ -1,0 +1,19 @@
+seed: 42
+device: cuda
+dtype: auto
+draft_model: distilgpt2
+verifier_model: gpt2
+validation_level: gpu_smoke
+max_new_tokens: 32
+temperatures: [0.0]
+draft_ks: [1, 2]
+prompt_types:
+  - factual_qa
+  - structured_json
+repetitions: 1
+batch_size: 1
+warmup_runs: 1
+torch_compile: false
+schedules: [static]
+adaptive_policies: []
+

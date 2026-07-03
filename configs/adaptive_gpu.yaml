@@ -1,0 +1,35 @@
+seed: 42
+device: cuda
+dtype: auto
+draft_model: ${DRAFTVERIFY_DRAFT_MODEL:-meta-llama/Llama-3.2-1B}
+verifier_model: ${DRAFTVERIFY_VERIFIER_MODEL:-meta-llama/Llama-3.1-8B}
+max_new_tokens: 64
+temperatures: [0.0, 0.3, 0.7]
+draft_ks: [1, 2, 4, 8]
+prompt_types:
+  - code_completion
+  - structured_json
+  - factual_qa
+  - summarization
+  - open_ended
+repetitions: 2
+batch_size: 1
+warmup_runs: 1
+torch_compile: false
+schedules: [static, adaptive]
+adaptive_policies:
+  - confidence_threshold
+  - entropy_threshold
+  - rolling_acceptance
+confidence_thresholds:
+  "0.85": 8
+  "0.70": 4
+  "0.50": 2
+entropy_thresholds:
+  "2.0": 8
+  "4.0": 4
+  "6.0": 2
+rolling_acceptance_window: 8
+rolling_acceptance_min_k: 1
+rolling_acceptance_max_k: 8
+
