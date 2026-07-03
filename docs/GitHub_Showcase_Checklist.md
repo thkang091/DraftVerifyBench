@@ -90,9 +90,9 @@ git add -f \
 git commit -m "Add DraftVerifyBench GH200 speculative decoding study"
 ```
 
-## Pre-Publish Validation
+## Validation
 
-Run the test suite and regenerate the router tables before publishing:
+Run the test suite and regenerate the router tables before release updates:
 
 ```bash
 python scripts/validate_router_from_grid.py

@@ -99,9 +99,8 @@ work items. The medium run (`gpt2 -> gpt2-medium`) was skipped because the reduc
 12m18s on MPS.
 
 These GPT-2-family results validate the benchmark implementation and expose local tradeoffs. They
-are not sufficient for serious Llama-scale inference-systems claims. CUDA support, GPU metadata,
-GPU configs, and a runbook have been added, but the Llama-scale CUDA run remains pending until
-executed on suitable hardware.
+are not sufficient for serious Llama-scale inference-systems claims by themselves. The later GH200
+Qwen/Llama validation is reported separately in `docs/GH200_Final_Showcase_Report.md`.
 
 ## 6. Metrics
 
@@ -232,14 +231,14 @@ speculative sampling for non-zero-temperature generation.
 
 ## 12. Hardware Caveats
 
-The completed run used Apple MPS, not CUDA. Timing behavior can differ substantially on NVIDIA
+The local GPT-2 run used Apple MPS, not CUDA. Timing behavior can differ substantially on NVIDIA
 GPUs, especially if draft and verifier execution are batched or integrated into a serving engine.
-The run used local wall-clock measurements and includes Python overhead. It should be interpreted
-as a profiler for algorithmic tradeoffs, not as a production serving benchmark.
+The later GH200 validation should be used for the repository's current CUDA-scale claims.
 
 ## 13. Limitations
 
-- Completed experiments used local small models only.
+- The local GPT-2 experiments used small models only; GH200 Qwen/Llama results are reported
+  separately.
 - The medium model pair was skipped due to runtime on local hardware.
 - The prompt suite is small and synthetic.
 - Greedy speculative decoding is implemented; exact speculative sampling is not.

@@ -1,8 +1,9 @@
 # GPU Runbook
 
 DraftVerifyBench can run on CUDA when local Hugging Face model weights are available. The existing
-GPT-2 Apple MPS results validate the implementation path; Llama-scale CUDA results are pending
-until a GPU run is completed.
+GPT-2 Apple MPS results validate the implementation path. The repository now also includes GH200
+Qwen/Llama full-static validation artifacts; use this runbook to reproduce or extend those CUDA
+experiments.
 
 ## Recommended Hardware
 
@@ -97,4 +98,3 @@ zip -r draftverifybench_gpu_results.zip results \
 
 After copying results locally, stop or terminate the cloud GPU instance from the provider console.
 Do not leave a GPU instance running after the benchmark finishes.
-

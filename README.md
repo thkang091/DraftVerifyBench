@@ -9,6 +9,75 @@ against speculative decoding across model pairs, prompt types, temperatures, and
 Headline inference-systems claims should be based on CUDA GPU validation runs with larger model
 pairs such as 1B-class draft models and 7B/8B-class verifier models.
 
+## Reproducibility
+
+The GH200 headline numbers below are regenerated from committed per-row result CSVs. From a clean
+clone:
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+pip install -e .
+
+python scripts/summarize_gh200_showcase.py
+
+python scripts/analyze_variance.py \
+  --inputs \
+    results/gpu_qwen_full_static_results.csv \
+    results/gpu_qwen_full_static_seed43_results.csv \
+    results/gpu_llama_full_static_results.csv \
+    results/gpu_llama_full_static_seed43_results.csv \
+  --labels \
+    qwen_seed42 \
+    qwen_seed43 \
+    llama_seed42 \
+    llama_seed43
+
+python scripts/validate_router_from_grid.py
+python -m pytest
+```
+
+These commands regenerate the showcase, variance, and router tables used by the reports. They do
+not require a GPU because the GH200 per-row CSVs are committed as reproducibility artifacts.
+
+To rerun the raw CUDA benchmark itself, use a CUDA machine with access to the listed Hugging Face
+models and run:
+
+```bash
+python scripts/run_gpu_validation.py \
+  --config configs/gpu_llama_full_static.yaml \
+  --out results/gpu_llama_full_static_results.csv \
+  --raw-out results/gpu_llama_full_static_raw.jsonl \
+  --metadata-out results/gpu_llama_full_static_metadata.json \
+  --summary-out results/gpu_llama_full_static_summary.md \
+  --require-cuda
+
+python scripts/run_gpu_validation.py \
+  --config configs/gpu_llama_full_static_seed43.yaml \
+  --out results/gpu_llama_full_static_seed43_results.csv \
+  --raw-out results/gpu_llama_full_static_seed43_raw.jsonl \
+  --metadata-out results/gpu_llama_full_static_seed43_metadata.json \
+  --summary-out results/gpu_llama_full_static_seed43_summary.md \
+  --require-cuda
+
+python scripts/run_gpu_validation.py \
+  --config configs/gpu_qwen_full_static.yaml \
+  --out results/gpu_qwen_full_static_results.csv \
+  --raw-out results/gpu_qwen_full_static_raw.jsonl \
+  --metadata-out results/gpu_qwen_full_static_metadata.json \
+  --summary-out results/gpu_qwen_full_static_summary.md \
+  --require-cuda
+
+python scripts/run_gpu_validation.py \
+  --config configs/gpu_qwen_full_static_seed43.yaml \
+  --out results/gpu_qwen_full_static_seed43_results.csv \
+  --raw-out results/gpu_qwen_full_static_seed43_raw.jsonl \
+  --metadata-out results/gpu_qwen_full_static_seed43_metadata.json \
+  --summary-out results/gpu_qwen_full_static_seed43_summary.md \
+  --require-cuda
+```
+
 ## Primary Finding
 
 ### GH200 Full-Static Validation
@@ -349,9 +418,8 @@ Docs added for standalone usage:
 
 ## Limitations
 
-- Completed experiments used local small models only: `distilgpt2 -> gpt2`.
-- Latency is hardware-dependent and was measured on Apple MPS, not CUDA.
-- CUDA/Llama-scale benchmark support is implemented, but the Llama-scale run is pending.
+- Latency is hardware-dependent. Local GPT-2-family timing was measured on Apple MPS; headline
+  Qwen/Llama timing was measured on a single NVIDIA GH200 480GB instance.
 - The prompt suite is intentionally small and synthetic.
 - Greedy speculative decoding is implemented and validated.
 - Exact speculative sampling with probability correction is not implemented.
@@ -365,9 +433,3 @@ Docs added for standalone usage:
 This project complements ReceiptInject, my LLM agent safety/evals infrastructure project.
 ReceiptInject evaluates agent safety and tool-boundary failures; DraftVerifyBench profiles
 inference optimization tradeoffs.
-
-## Repository Note
-
-DraftVerifyBench currently lives inside a larger local project directory. Before publishing it on
-GitHub, move `DraftVerifyBench/` into its own standalone repository and keep `.cache/`, model
-weights, virtual environments, and local secret files out of version control.

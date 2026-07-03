@@ -1,7 +1,8 @@
 # Serving Integration Notes
 
-DraftVerifyBench currently uses a local Hugging Face backend. vLLM and SGLang integrations are
-planned but not implemented.
+DraftVerifyBench currently uses a local Hugging Face backend. The repository includes a small vLLM
+comparison script for representative offline checks, but not a full production-serving adapter.
+SGLang integration remains future work.
 
 ## vLLM
 
@@ -14,8 +15,8 @@ speculative decoding support. A DraftVerifyBench adapter would need to:
 - record batch size, scheduler settings, model names, and hardware metadata
 - compare always-baseline, static speculation, and adaptive/router policies at request level
 
-TODO: verify the exact vLLM Python/server API and speculative configuration flags for the target
-version before implementing.
+Before expanding this into a full adapter, verify the exact vLLM Python/server API and speculative
+configuration flags for the target version.
 
 Reference starting point: https://vllm.ai/
 
@@ -29,8 +30,8 @@ adapter would need to:
 - identify whether speculative decoding counters are exposed by the chosen SGLang version
 - export results in DraftVerifyBench CSV/JSONL schemas
 
-TODO: verify exact SGLang APIs and speculative decoding configuration for the target version before
-implementing.
+Before implementing, verify exact SGLang APIs and speculative decoding configuration for the target
+version.
 
 Reference starting point: https://www.sglang.io/
 
