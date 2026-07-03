@@ -6,7 +6,6 @@ from typing import Any
 
 import pandas as pd
 
-
 ROUTER_FEATURES = ["model_family", "prompt_type"]
 POST_GENERATION_FIELDS = [
     "acceptance_rate",

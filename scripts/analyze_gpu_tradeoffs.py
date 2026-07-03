@@ -6,7 +6,6 @@ from typing import Any
 
 import pandas as pd
 
-
 DEFAULT_RUNS = {
     "qwen_0.5b_to_7b": "results/gpu_qwen_reduced_results.csv",
     "llama_1b_to_8b": "results/gpu_llama_reduced_results.csv",

@@ -5,7 +5,6 @@ from pathlib import Path
 
 import pandas as pd
 
-
 DEFAULT_RUNS = {
     "qwen_seed42": "results/gpu_qwen_full_static_results.csv",
     "qwen_seed43": "results/gpu_qwen_full_static_seed43_results.csv",

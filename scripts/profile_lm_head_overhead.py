@@ -85,15 +85,15 @@ def profile_model(
     for _ in range(decode_steps):
         body_ms, body_outputs = _timed_call(
             device,
-            lambda: body(
-                input_ids=next_token,
-                past_key_values=past_key_values,
+            lambda token=next_token, cache=past_key_values: body(
+                input_ids=token,
+                past_key_values=cache,
                 use_cache=True,
             ),
         )
         past_key_values = body_outputs.past_key_values
         last_hidden = body_outputs.last_hidden_state[:, -1:, :]
-        head_ms, logits = _timed_call(device, lambda: lm_head(last_hidden))
+        head_ms, logits = _timed_call(device, lambda hidden=last_hidden: lm_head(hidden))
         next_token = torch.argmax(logits[:, -1, :].float(), dim=-1, keepdim=True)
         decode_body_times.append(body_ms)
         decode_lm_head_times.append(head_ms)

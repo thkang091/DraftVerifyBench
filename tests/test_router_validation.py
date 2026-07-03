@@ -10,7 +10,6 @@ from scripts.validate_router_from_grid import (
     validate_router,
 )
 
-
 RESULT_PATHS = {
     "qwen_seed42": Path("results/gpu_qwen_full_static_results.csv"),
     "qwen_seed43": Path("results/gpu_qwen_full_static_seed43_results.csv"),

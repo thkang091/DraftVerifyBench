@@ -80,7 +80,10 @@ def main() -> None:
     parser.add_argument("--verifier-model", default="meta-llama/Llama-3.1-8B")
     parser.add_argument("--device", default="cuda")
     parser.add_argument("--dtype", default="auto")
-    parser.add_argument("--prompt", default='Write a JSON object with keys "name", "age", and "city":')
+    parser.add_argument(
+        "--prompt",
+        default='Write a JSON object with keys "name", "age", and "city":',
+    )
     parser.add_argument("--max-new-tokens", type=int, default=64)
     parser.add_argument("--temperature", type=float, default=0.0)
     parser.add_argument("--draft-k", type=int, default=4)
