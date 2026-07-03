@@ -14,6 +14,19 @@ DEFAULT_RUNS = {
 }
 
 
+def _require_run_files(runs: dict[str, str | Path]) -> None:
+    missing = [str(path) for path in runs.values() if not Path(path).exists()]
+    if missing:
+        formatted = "\n".join(f"  - {path}" for path in missing)
+        raise SystemExit(
+            "Missing GH200 full-static result CSVs required for showcase summaries:\n"
+            f"{formatted}\n"
+            "These files are committed reproducibility artifacts. If they are absent, recover "
+            "them from gh200_results_core_no_profiles.tar.gz or rerun the GH200 full-static "
+            "commands in README.md."
+        )
+
+
 def _read(path: str | Path, label: str) -> pd.DataFrame:
     df = pd.read_csv(path)
     df["run_label"] = label
@@ -93,6 +106,7 @@ def main() -> None:
     out = Path(args.out_dir)
     out.mkdir(parents=True, exist_ok=True)
 
+    _require_run_files(DEFAULT_RUNS)
     df = pd.concat([_read(path, label) for label, path in DEFAULT_RUNS.items()])
     _summary(df, ["model_family"]).to_csv(out / "gh200_showcase_by_model_family.csv", index=False)
     _summary(df, ["model_family", "run_label"]).to_csv(
