@@ -5,6 +5,9 @@
 DraftVerifyBench is a local benchmarking framework for comparing standard autoregressive decoding
 against speculative decoding across model pairs, prompt types, temperatures, and draft lengths.
 
+Includes an arXiv-style preprint draft with reproducible table and figure generation from committed
+raw result CSVs.
+
 **GPU validation caveat:** Local Mac/CPU/MPS runs are useful for correctness and debugging.
 Headline inference-systems claims should be based on CUDA GPU validation runs with larger model
 pairs such as 1B-class draft models and 7B/8B-class verifier models.
