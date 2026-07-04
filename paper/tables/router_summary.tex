@@ -1,0 +1,14 @@
+\begin{tabular}{llllllll}
+\toprule
+Pair & Policy & Rows & Mean & Slowdown & Spec share & Spec mean & Spec slowdown \\
+\midrule
+Llama & Never & 180 & 1.0000$\times$ & 0.00\% & 0.00\% & 1.0000$\times$ & 0.00\% \\
+Llama & Always $k=4$ & 180 & 1.2068$\times$ & 45.00\% & 100.00\% & 1.2068$\times$ & 45.00\% \\
+Llama & Trained router & 180 & 1.2294$\times$ & 37.22\% & 70.00\% & 1.3277$\times$ & 53.17\% \\
+Llama & Oracle & 180 & 1.4363$\times$ & 0.00\% & 55.56\% & 1.7853$\times$ & 0.00\% \\
+Qwen & Never & 180 & 1.0000$\times$ & 0.00\% & 0.00\% & 1.0000$\times$ & 0.00\% \\
+Qwen & Always $k=4$ & 180 & 0.6520$\times$ & 98.89\% & 100.00\% & 0.6520$\times$ & 98.89\% \\
+Qwen & Trained router & 180 & 1.0000$\times$ & 0.00\% & 0.00\% & 1.0000$\times$ & 0.00\% \\
+Qwen & Oracle & 180 & 1.0062$\times$ & 0.00\% & 1.11\% & 1.5559$\times$ & 0.00\% \\
+\bottomrule
+\end{tabular}
